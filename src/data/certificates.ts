@@ -32,7 +32,7 @@ if (process.env.NEXT_PUBLIC_BASE_PATH) {
 }
 // const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
 // const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
-// c
+// cp
 
 export const certificates = {
     helsinki: [
