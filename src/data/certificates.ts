@@ -26,8 +26,9 @@
 //     ]
 //   };
   
-
+// const path = ``
 const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
+// const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export const certificates = {
     helsinki: [
