@@ -2,14 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
-
 export function AudioToggle() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    audioRef.current = new Audio(`${base}/music.mp3`);
+    audioRef.current = new Audio(`music.mp3`);
     audioRef.current.volume = 0.3;
     audioRef.current.loop = true;
 
