@@ -1,3 +1,16 @@
+// const nextConfig = {
+//   output: 'export',
+//   images: {
+//     unoptimized: true,
+//   },
+//   basePath: '/portfolio',
+//   assetPrefix: '/portfolio/',
+// };
+
+// module.exports = nextConfig;
+
+
+
 /** @type {import('next').NextConfig} */
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -12,6 +25,11 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+
+
+
+
 
 
 // import type { NextConfig } from "next";
