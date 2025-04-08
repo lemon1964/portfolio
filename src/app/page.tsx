@@ -23,7 +23,7 @@ export default function Home() {
         <h2 className="text-xl font-semibold mb-2">Контакты</h2>
         <p>
           Email:{" "}
-          <a href="mailto:your.email@example.com" className="text-blue-600">
+          <a href="mailto:lemon.design@mail.ru" className="text-blue-600">
             lemon.design@mail.ru
           </a>
         </p>
