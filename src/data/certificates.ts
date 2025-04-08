@@ -25,9 +25,12 @@
 //       { src: `certificates/Инди-курс-Python.png`, title: 'Инди Python' },
 //     ]
 //   };
-  
-// const path = ``
-const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+let base = '';
+if (process.env.NEXT_PUBLIC_BASE_PATH) {
+  base = `lemon1964.github.io${process.env.NEXT_PUBLIC_BASE_PATH}`;  
+}
+// const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
 // const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
 // c
 
