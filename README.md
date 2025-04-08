@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Документация по проекту Portfolio
 
-## Getting Started
+## Общее описание
 
-First, run the development server:
+Лендинг портфолио на Next.js 15 App Router + TailwindCSS, с разверткой на GitHub Pages.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**Структура сайта:**
+- 📄 Краткая информация о себе
+- 📄 Проекты (ProjectSection)
+- 📄 Сертификаты (CertificatesSection)
+- 📄 Блок обо мне (AboutSection)
+- 📌 Контакты
+
+---
+
+## Ссылки mailto: и WhatsApp
+
+```jsx
+<a href="mailto:lemon.design@mail.ru">...</a>
+<a href="https://wa.me/79991234567">...</a>
+```
+- `mailto:` открывает почтовый клиент
+- `wa.me` ссылка для открытия WhatsApp chat
+
+---
+
+## framer-motion: AnimatePresence + motion.div
+
+### Раскрытие project.longDesc:
+```tsx
+<AnimatePresence>
+  {expanded === index && (
+    <motion.p
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: 'auto' }}
+      exit={{ opacity: 0, height: 0 }}
+    >
+      {project.longDesc}
+    </motion.p>
+  )}
+</AnimatePresence>
+```
+- `AnimatePresence` обеспечивает анимацию удаления
+- `motion.p` при раскрытии/скрытии описания
+
+### Общая логика `expanded`
+```tsx
+const [expanded, setExpanded] = useState<number | null>(null);
+
+const handleToggle = (index: number) => {
+  setExpanded(expanded === index ? null : index);
+};
+```
+- Управляет отображением `longDesc`
+
+---
+
+## AudioToggle
+
+```tsx
+useEffect(() => {
+  audioRef.current = new Audio("music.mp3");
+  audioRef.current.loop = true;
+  const tryPlay = () => {
+    if (audioRef.current && !playing) {
+      audioRef.current.play().then(() => setPlaying(true)).catch(() => {});
+    }
+  };
+
+  document.body.addEventListener("click", tryPlay, { once: true });
+  return () => document.body.removeEventListener("click", tryPlay);
+}, []);
+```
+- Автозапуск по первому клику (обход Chrome)
+- `audioRef` сохраняет HTMLAudioElement
+- Клик на кнопку вкл/выкл звука
+
+---
+
+## Деплой GitHub Pages: особенности
+
+- Настройка `next.config.js`:
+```ts
+output: 'export',
+basePath: '/portfolio',
+assetPrefix: '/portfolio/',
+```
+- Создан `.env.production`
+```env
+NEXT_PUBLIC_BASE_PATH=portfolio/
+```
+- Код из `NEXT_PUBLIC_BASE_PATH` используется в src для музыки и изображений:
+```ts
+const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
+```
+- Важно: **следить чтобы пути были без двойных слэшей**. Например:
+```ts
+{ src: `${base}certificates/GraphQL.png` }
+```
+А не:
+```ts
+{ src: `${base}/certificates/GraphQL.png` } // Это не сработает
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### GITHUB_TOKEN
+- Добавлять не надо, GitHub автоматом его доставляет
+- Путем `secrets.GITHUB_TOKEN`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Классные идеи для прочих проектов
 
-## Learn More
+- Совмещение motion + AnimatePresence для toggle-UI
+- Автозапуск музыки по клику (обход блокировок браузеров)
+- Кликабельные кнопки-иконки для UI
+- Простой фреймворк для deploy с поддержкой static export + basePath
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> Сайт: https://lemon1964.github.io/portfolio/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+📕 Проект by Lemon & ChatGPT
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

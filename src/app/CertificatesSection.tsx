@@ -1,4 +1,3 @@
-// Обновлённый компонент CertificatesSection с компактным видом и toggle
 'use client';
 
 import { useState } from 'react';
