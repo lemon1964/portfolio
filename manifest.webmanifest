@@ -1,7 +1,7 @@
 {
     "name": "Lemon Labs",
     "short_name": "LemonLabs",
-    "start_url": "/",
+    "start_url": "portfolio/",
     "display": "standalone",
     "background_color": "#0f172a",
     "theme_color": "#0f172a",
