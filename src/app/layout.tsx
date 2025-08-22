@@ -16,11 +16,11 @@ export const metadata: Metadata = {
   title: "Lemon Labs",
   description: "Проекты на React/Django/Next — без магии, с дисциплиной.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  manifest: "/manifest.webmanifest",
+  // manifest: "/manifest.webmanifest",
   icons: {
     icon: "/icon.png",
     apple: "/apple-icon.png",
-    other: [{ rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#5452f6" }],
+    // other: [{ rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#5452f6" }],
   },
   openGraph: { images: ["/opengraph-image.png"] },
   twitter: { card: "summary_large_image", images: ["/twitter-image.png"] },
